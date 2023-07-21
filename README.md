@@ -5,7 +5,6 @@ To excecute the app you must following steps
 
 ```bash
 python -m virtualenv venv
-
-2. go to file  "venv/Scripts/activate.bat"
-3. ```bash pip install -r requeriments.txt
-4. ```bash python manage.py runserver
+"venv/Scripts/activate.bat"
+pip install -r requeriments.txt
+ python manage.py runserver
