@@ -7,4 +7,4 @@ To excecute the app you must following steps
 python -m virtualenv venv
 "venv/Scripts/activate.bat"
 pip install -r requeriments.txt
- python manage.py runserver
+python manage.py runserver
