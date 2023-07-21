@@ -15,7 +15,14 @@ python -m virtualenv venv
 ```
 pip install -r requeriments.txt
 ```
-4. Run the Django development server:
+4. Run the migrations:
+```
+python manage.py makemigrations
+```
+```
+python manage.py migrate
+```
+5. Run the Django development server:
 ```
 python manage.py runserver
 ```
