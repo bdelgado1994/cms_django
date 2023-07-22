@@ -1,32 +1,46 @@
-{% extends 'layouts.html' %} {% block content %}
+{% extends 'layouts.html' %} {% block content %} {% if user.is_authenticated %}
+<h1>Hello World</h1>
+{% else %}
 <div class="col-md-6 offset-md-3">
   <h1>Login</h1>
+  {% if messages %} {% for message in messages %}
+  <div
+    class="alert {% if "error" in message.tags %} alert-danger {% else %} alert-success {% endif %} alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>{{ message }}</strong>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endfor %} {% endif %}
   <form action="{% url 'home' %}" method="post">
     {% csrf_token %}
     <div class="mb-3">
-      <label for="" class="form-label">Email</label>
       <input
         type="text"
         class="form-control"
-        name=""
-        id=""
+        name="username"
         aria-describedby="emailHelpId"
-        placeholder="abc@mail.com"
+        placeholder="UserName"
+        required
       />
     </div>
-    <div class="mb-3">
+    <div class="mb-4">
       <label for="" class="form-label">Password</label>
       <input
         type="password"
         class="form-control"
-        name=""
-        id=""
-        placeholder=""
+        name="password"
+        placeholder="Password"
       />
     </div>
     <div class="mb-3">
-      <input type="submit" class="btn btn-secondary" value="Login">
+      <input type="submit" class="btn btn-secondary" value="Login" />
     </div>
   </form>
 </div>
-{% endblock content %}
+{% endif %} {% endblock content %}
