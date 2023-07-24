@@ -34,3 +34,7 @@ def logout_user(request):
     logout(request)
     messages.error(request, "You Have Been Logged Out")
     return redirect("home")
+
+
+def register_user(request):
+    return render(request, "pages/register.html", {})
