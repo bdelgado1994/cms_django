@@ -11,7 +11,7 @@ class SingUpForm(UserCreationForm):
             attrs={"class": "form-control", "placeholder": "Email Addres"}
         ),
     )
-    name = forms.CharField(
+    first_name = forms.CharField(
         label="",
         max_length=100,
         widget=forms.TextInput(

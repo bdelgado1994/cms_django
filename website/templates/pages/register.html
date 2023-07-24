@@ -1,3 +1,21 @@
 {% extends 'layouts.html' %} {% block content %}
-<h1>Register Page</h1>
+<div class="col-md-6 offset-md-3">
+  <h1>Register Page</h1>
+  <form action="{% url 'register' %}" class="form-group" method="post">
+    {% csrf_token %} 
+    {% if form.errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Yor Form Has Errors</strong>
+            {% for field in form %} 
+                {% if field.errors %} 
+                    {{ field.errors }} 
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %} {{ form.as_p }}
+    <div class="mb-3">
+      <input type="submit" class="btn btn-secondary" value="Register" />
+    </div>
+  </form>
+</div>
 {% endblock content %}
