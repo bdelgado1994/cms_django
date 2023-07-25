@@ -1,0 +1,35 @@
+{% extends 'layouts.html' %} 
+{% block content %} 
+    <div class="card">
+        <div class="card-header">
+            <h4>{{ costumer_records.first_name }}{{ costumer_records.last_name }}</h4> 
+        </div>
+        <div class="card-body">
+            <p class="card-text"><strong>Email: </strong>{{ costumer_records.email }}</p>
+            <p class="card-text"><strong>Phone: </strong>+505 {{ costumer_records.phone }}</p>
+            <p class="card-text"><strong>Address: </strong>{{ costumer_records.address }}</p>
+            <p class="card-text"><strong>City: </strong>{{ costumer_records.city }}</p>
+            <p class="card-text"><strong>State: </strong>{{ costumer_records.state }}</p>
+            <p class="card-text"><strong>Zipcode: </strong>{{ costumer_records.zipcode }}</p>
+            <p class="card-text"><strong>Created At: </strong>{{ costumer_records.created_at }}</p>
+            <p class="card-text"><strong>Id: </strong>{{ costumer_records.id }}</p>
+        </div>
+        <div class="card-footer text-muted text-center">
+            <div class="row ">
+                <div class="mb-4 col-md-3">
+                    <a class="btn btn-secondary" href="{% url 'home' %}"><-Back</a>
+                </div>
+                <div class="mb-4 col-md-3">
+                    <a class="btn btn-danger" href="{% url 'delete_record' costumer_records.id %}">Delete</a>
+                </div>
+                <div class="mb-4 col-md-3">
+                    <a class="btn btn-success" href="">Update</a>
+                </div>
+                <div class="mb-4 col-md-3">
+                    <a class="btn btn-primary" href="{% url 'add_record' %}">Create</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}

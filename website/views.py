@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import SingUpForm
+from .forms import SingUpForm, AddRecordForm
 from .models import Record
 
 
 def home(request):
-    records=Record.objects.all()
+    records = Record.objects.all()
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -26,7 +26,7 @@ def home(request):
             )
             return redirect("home")
     else:
-        return render(request, "pages/home.html", {"records":records})
+        return render(request, "pages/home.html", {"records": records})
 
 
 def login_user(request):
@@ -55,3 +55,31 @@ def register_user(request):
         form = SingUpForm()
         return render(request, "pages/register.html", {"form": form})
     return render(request, "pages/register.html", {"form": form})
+
+
+def costumer_record(request, pk):
+    if request.user.is_authenticated:
+        costumer_records = Record.objects.get(id=pk)
+        return render(
+            request, "pages/record.html", {"costumer_records": costumer_records}
+        )
+    else:
+        messages.error(request, "You Must Be Logged In To View That Page..")
+        return redirect("home")
+
+
+def delete_record(request, pk):
+    if request.user.is_authenticated:
+        delete_it = Record.objects.get(id=pk)
+        delete = delete_it
+        messages.error(request, f"Record {delete} has been deleted successfully")
+        delete_it.delete()
+        return redirect("home")
+    else:
+        messages.error(request, "You Must Be Logged In To View That Page..")
+        return redirect("home")
+
+
+def add_record(request):
+    form = AddRecordForm()
+    return render(request, "pages/add_recod.html", {"form": form})

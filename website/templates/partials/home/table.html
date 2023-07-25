@@ -15,6 +15,9 @@
   <tbody>
     {% if records %} {% for record in records %}
     <tr>
+      <td stye="cursor:pointer">
+        <a href="{% url 'record' record.id %}">{{ record.id }}</a>
+      </td>
       <td>{{ record.first_name }} {{ record.last_name }}</td>
       <td>{{ record.email }}</td>
       <td>{{ record.phone }}</td>
@@ -23,7 +26,6 @@
       <td>{{ record.state }}</td>
       <td>{{ record.zipcode }}</td>
       <td>{{ record.created_at }}</td>
-      <td stye="cursor:pointer"><a href="#">{{ record.id }}</a></td>
     </tr>
     {% endfor %} {% endif %}
   </tbody>
