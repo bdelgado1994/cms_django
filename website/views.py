@@ -81,5 +81,26 @@ def delete_record(request, pk):
 
 
 def add_record(request):
-    form = AddRecordForm()
-    return render(request, "pages/add_recod.html", {"form": form})
+    form = AddRecordForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if form.is_valid():
+                form.save()
+                return redirect("home")
+        return render(request, "pages/add_recod.html", {"form": form})
+    else:
+        messages.error(request, "You Must Be Logged In To View That Page..")
+        return redirect("home")
+
+def update_record(request,pk):
+    form = AddRecordForm(request.POST or None)
+    if request.user.is_authenticated:
+        current_record=Record.objects.get(id=pk)
+        form = AddRecordForm(request.POST or None,instance=current_record)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+        return render(request, "pages/update_recod.html", {"form": form})
+    else:
+        messages.error(request, "You Must Be Logged In To View That Page..")
+        return redirect("home")    

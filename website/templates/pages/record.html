@@ -15,17 +15,17 @@
             <p class="card-text"><strong>Id: </strong>{{ costumer_records.id }}</p>
         </div>
         <div class="card-footer text-muted text-center">
-            <div class="row ">
-                <div class="mb-4 col-md-3">
+            <div class="d-flex">
+                <div class="mb-4 mx-2">
                     <a class="btn btn-secondary" href="{% url 'home' %}"><-Back</a>
                 </div>
-                <div class="mb-4 col-md-3">
+                <div class="mb-4">
                     <a class="btn btn-danger" href="{% url 'delete_record' costumer_records.id %}">Delete</a>
                 </div>
-                <div class="mb-4 col-md-3">
-                    <a class="btn btn-success" href="">Update</a>
+                <div class="mb-4 mx-2">
+                    <a class="btn btn-success" href="{% url 'update_record' costumer_records.id %}">Update</a>
                 </div>
-                <div class="mb-4 col-md-3">
+                <div class="mb-4">
                     <a class="btn btn-primary" href="{% url 'add_record' %}">Create</a>
                 </div>
             </div>
